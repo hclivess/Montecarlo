@@ -39,7 +39,9 @@ class Circle:
 
     def is_in_circle(self, point):
         """if (x-center_x)**2 + (y-center_y)**2 <= radius**2"""
-        if (point.x - self.offset_x) ** 2 + (point.y - self.offset_y) ** 2 <= self.radius ** 2:
+        if (point.x - self.offset_x) ** 2 + (
+            point.y - self.offset_y
+        ) ** 2 <= self.radius**2:
             return True
         else:
             return False
@@ -55,14 +57,12 @@ class Circle:
 
 
 def random_location_y(plane):
-    y = randrange(plane.y_start,
-                  plane.y_end)
+    y = randrange(plane.y_start, plane.y_end)
     return y
 
 
 def random_location_x(plane):
-    x = randrange(plane.x_start,
-                  plane.x_end)
+    x = randrange(plane.x_start, plane.x_end)
 
     return x
 
@@ -84,6 +84,7 @@ class Ball:
         ctx.arc(self.x, self.y, 4, 0, 2 * math.pi)
         ctx.fill()
 
+
 class Balls:
     def __init__(self, count, plane):
         self.ball_count = count
@@ -103,11 +104,16 @@ class Plane:
         self.y_start = 0
         self.y_end = 1000
 
+
 class Counter:
     def __init__(self):
         self.in_rectangle = 0
         self.in_circle = 0
         self.in_plane = 0
+
+    def get_ratio(self):
+        return self.in_circle / self.in_rectangle
+
 
 if __name__ == "__main__":
     plane = Plane()
@@ -143,5 +149,6 @@ if __name__ == "__main__":
     print(f"In plane: {counter.in_plane}")
     print(f"In circle: {counter.in_circle}")
     print(f"In rectangle: {counter.in_rectangle}")
+    print(f"Ratio: {counter.get_ratio()}")
 
-    surface.write_to_png('montecarlo.png')
+    surface.write_to_png("montecarlo.png")
